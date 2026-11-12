@@ -1,11 +1,23 @@
 package com.example.NutreAPP.repositories;
 
+import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-@Repository 
+import com.example.NutreAPP.models.Usuario;
 
-public interface IUsuarioRepositorio extends JpaRepository {
+@Repository
+public interface IUsuarioRepositorio extends JpaRepository<Usuario,UUID> {
 
-    
-} 
+    List<Usuario> findByDepartamentoAndRol(String departamento, String rol);
+
+    Optional<Usuario> findByCorreo(String correo);
+
+    List<Usuario> findByRolOrderAndNombreAsc(String rol);
+
+    Boolean existByCorreo(String correo);
+
+}
