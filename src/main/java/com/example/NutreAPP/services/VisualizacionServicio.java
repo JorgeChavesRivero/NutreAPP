@@ -38,7 +38,6 @@ public class VisualizacionServicio {
         return this.repositorio.findAll();
     }
 
-    //Metodo para modificar
     //Metodo para eliminar
     //Metodo para buscar por fecha de visualizacion
     //Metodo para buscar por completado true
