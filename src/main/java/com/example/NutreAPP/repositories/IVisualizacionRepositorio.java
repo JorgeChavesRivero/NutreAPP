@@ -8,9 +8,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import com.example.NutreAPP.models.Video;
+import com.example.NutreAPP.models.Visualizacion;
 
 @Repository
-public interface IVisualizacionRepositorio extends JpaRepository<Video, UUID> {
+public interface IVisualizacionRepositorio extends JpaRepository<Visualizacion, UUID> {
 
     List<Video> findByCategoria(String categoria);
 

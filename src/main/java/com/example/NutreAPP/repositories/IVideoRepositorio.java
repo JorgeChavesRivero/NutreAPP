@@ -7,10 +7,11 @@ import java.util.UUID;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import com.example.NutreAPP.models.Video;
 import com.example.NutreAPP.models.Visualizacion;
 
 @Repository
-public interface IVideoRepositorio extends JpaRepository<Visualizacion, UUID> {
+public interface IVideoRepositorio extends JpaRepository<Video, UUID> {
 
     List<Visualizacion> findByFechaVisualizacion(LocalDate fecha_visualizacion);
 
