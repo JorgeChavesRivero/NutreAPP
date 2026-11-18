@@ -56,6 +56,16 @@ public class VideoServicio {
     }
 
     //Metodo para eliminar
+    public boolean eliminar(UUID id) {
+        Optional<Video> videoBuscado = this.repositorio.findById(id);
+        if (!videoBuscado.isPresent()) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "id no encontrado");
+        } else {
+            this.repositorio.deleteById(id);
+            return true;
+        }
+    }
+
     //Metodo para buscar por categoria
     //Metodo para buscar por titulo
     //Metodo para buscar por descripcion
