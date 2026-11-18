@@ -20,76 +20,76 @@ import jakarta.persistence.Table;
 @Table(name = "video")
 public class Video {
 
-   @Id
-   @GeneratedValue(strategy = GenerationType.UUID)
-   private UUID id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
 
-   @Column(name = "titulo", nullable = false, unique = false)
-   private String titulo;
+    @Column(name = "titulo", nullable = false, unique = false)
+    private String titulo;
 
-   @Column(name = "descripcion", nullable = false, unique = false)
-   private String descripcion;
+    @Column(name = "descripcion", nullable = false, unique = false)
+    private String descripcion;
 
-   @Column(name = "url", nullable = false, unique = true)
-   private String url;
+    @Column(name = "url", nullable = false, unique = true)
+    private String url;
 
-   @Enumerated(EnumType.STRING)
-   @Column(name = "categoria", nullable = false, unique = false)
-   private Categoria categoria;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "categoria", nullable = false, unique = false)
+    private Categoria categoria;
 
-   @OneToMany(mappedBy = "video")
-   @JsonBackReference(value = "video-visualizacion")
-   private List<Visualizacion> visualizaciones;
+    @OneToMany(mappedBy = "video")
+    @JsonBackReference(value = "video-visualizacion")
+    private List<Visualizacion> visualizaciones;
 
-   public Video() {
-   }
+    public Video() {
+    }
 
-   public Video(UUID id, String titulo, String descripcion, String url, Categoria categoria) {
-      this.id = id;
-      this.titulo = titulo;
-      this.descripcion = descripcion;
-      this.url = url;
-      this.categoria = categoria;
-   }
+    public Video(UUID id, String titulo, String descripcion, String url, Categoria categoria) {
+        this.id = id;
+        this.titulo = titulo;
+        this.descripcion = descripcion;
+        this.url = url;
+        this.categoria = categoria;
+    }
 
-   public UUID getId() {
-      return id;
-   }
+    public UUID getId() {
+        return id;
+    }
 
-   public void setId(UUID id) {
-      this.id = id;
-   }
+    public void setId(UUID id) {
+        this.id = id;
+    }
 
-   public String getTitulo() {
-      return titulo;
-   }
+    public String getTitulo() {
+        return titulo;
+    }
 
-   public void setTitulo(String titulo) {
-      this.titulo = titulo;
-   }
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
 
-   public String getDescripcion() {
-      return descripcion;
-   }
+    public String getDescripcion() {
+        return descripcion;
+    }
 
-   public void setDescripcion(String descripcion) {
-      this.descripcion = descripcion;
-   }
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
 
-   public String getUrl() {
-      return url;
-   }
+    public String getUrl() {
+        return url;
+    }
 
-   public void setUrl(String url) {
-      this.url = url;
-   }
+    public void setUrl(String url) {
+        this.url = url;
+    }
 
-   public Categoria getCategoria() {
-      return categoria;
-   }
+    public Categoria getCategoria() {
+        return categoria;
+    }
 
-   public void setCategoria(Categoria categoria) {
-      this.categoria = categoria;
-   }
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
+    }
 
 }
