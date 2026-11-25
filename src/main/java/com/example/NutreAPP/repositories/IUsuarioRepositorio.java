@@ -5,19 +5,18 @@ import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
 
 import com.example.NutreAPP.models.Usuario;
+import com.example.NutreAPP.models.helpers.Rol;
 
-@Repository
 public interface IUsuarioRepositorio extends JpaRepository<Usuario, UUID> {
 
     List<Usuario> findByDepartamentoAndRol(String departamento, String rol);
 
     Optional<Usuario> findByCorreo(String correo);
 
-    List<Usuario> findByRolOrderAndNombreAsc(String rol);
+    List<Usuario> findByRolOrderByNombreAsc(Rol rol);
 
-    Boolean existByCorreo(String correo);
+    Boolean existsByCorreo(String correo);
 
 }

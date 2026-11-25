@@ -14,6 +14,7 @@ import com.example.NutreAPP.repositories.IVideoRepositorio;
 
 @Service
 public class VideoServicio {
+
     @Autowired
     private IVideoRepositorio repositorio;
 
@@ -30,11 +31,9 @@ public class VideoServicio {
             return videoBuscado.get();
 
         }
-
     }
 
     public List<Video> buscarTodos() {
-
         return this.repositorio.findAll();
     }
 

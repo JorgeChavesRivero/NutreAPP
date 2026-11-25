@@ -106,4 +106,6 @@ public class Usuario {
         this.contrasena_hash = contrasena_hash;
     }
 
+    
+
 }

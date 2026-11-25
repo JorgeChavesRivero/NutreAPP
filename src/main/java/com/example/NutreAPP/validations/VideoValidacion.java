@@ -3,6 +3,7 @@ package com.example.NutreAPP.validations;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import org.springframework.web.server.ResponseStatusException;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import com.example.NutreAPP.models.Video;
 import com.example.NutreAPP.repositories.IVideoRepositorio;
@@ -10,6 +11,7 @@ import com.example.NutreAPP.repositories.IVideoRepositorio;
 @Component
 public class VideoValidacion {
 
+    @Autowired
     private IVideoRepositorio repositorio;
 
     // V1. Titulo obligatorio y entre 5 y 120 caracteres. -> 400

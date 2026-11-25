@@ -14,6 +14,7 @@ import com.example.NutreAPP.repositories.IVisualizacionRepositorio;
 
 @Service
 public class VisualizacionServicio {
+    
     @Autowired
     private IVisualizacionRepositorio repositorio;
 

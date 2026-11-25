@@ -18,6 +18,7 @@ public class UsuarioServicio {
 
     @Autowired
     private IUsuarioRepositorio repositorio;
+
     @Autowired
     private UsuarioValidacion validador;
 
