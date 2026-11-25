@@ -11,64 +11,83 @@ import org.springframework.web.server.ResponseStatusException;
 
 import com.example.NutreAPP.models.Usuario;
 import com.example.NutreAPP.repositories.IUsuarioRepositorio;
+import com.example.NutreAPP.validations.UsuarioValidacion;
 
 @Service
 public class UsuarioServicio {
 
     @Autowired
     private IUsuarioRepositorio repositorio;
+    @Autowired
+    private UsuarioValidacion validador;
 
-    //Metodo para guardar
-    public Usuario guardar(Usuario datos) {
+    // metodo guardar
+    public Usuario guardarUsuario(Usuario datos) {
+        this.validador.validarCorreo(datos.getCorreo());
+        this.validador.validarUsuarioNuevo(datos);
+        this.validador.validarNombre(datos.getNombre());
+        this.validador.validarContrasena(datos.getContrasena_hash());
         return this.repositorio.save(datos);
     }
 
-    //Metodo para buscar por id
+    // metodo buscar por id
     public Usuario buscarPorId(UUID id) {
         Optional<Usuario> usuarioBuscado = this.repositorio.findById(id);
+
         if (!usuarioBuscado.isPresent()) {
+
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "id no encontrado");
+
         } else {
             return usuarioBuscado.get();
         }
     }
 
-    //Metodo para buscar todos
+    // metodo para buscar por todos
     public List<Usuario> buscarTodos() {
         return this.repositorio.findAll();
+
     }
+    // metodo para modificar
 
-    //Metodo para modificar
-    public Usuario modifcar(UUID id, Usuario datos) {
+    public Usuario modificarUsuario(UUID id, Usuario datos) {
+
         Optional<Usuario> usuarioBuscado = this.repositorio.findById(id);
+
         if (!usuarioBuscado.isPresent()) {
+
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "id no encontrado");
+
         } else {
-            //1. Precargar la info que existe actualmente en la base de datos
-            Usuario usuarioEncontrado = usuarioBuscado.get();
+            // 1. precargar la info que existe actualmente en la base de datos
+            Usuario usuarioExistente = usuarioBuscado.get();
 
-            //2. Espacio para modificar solo las propiedades permitidas
-            usuarioEncontrado.setNombre(datos.getNombre());
-            usuarioEncontrado.setRol(datos.getRol());
+            // 2. Espacio para modificar las propiedades permitidas
+            usuarioExistente.setNombre(datos.getNombre());
+            usuarioExistente.setRol(datos.getRol());
 
-            //3. Espacio para volver a guardar el usuario que se acaba de modificar
-            return this.repositorio.save(usuarioEncontrado);
+            // 3. Guardar la info modificada en la base de datos
+            return this.repositorio.save(usuarioExistente);
         }
     }
 
-    //Metodo para eliminar
-    public boolean eliminar(UUID id) {
+    // metdo para eliminar
+    public boolean eliminarUsuario(UUID id) {
         Optional<Usuario> usuarioBuscado = this.repositorio.findById(id);
+
         if (!usuarioBuscado.isPresent()) {
+            // El httpStatus genera la respuesta 200,300,400,500 se puede moificar segun se
+            // adapte a la respuesta esperada
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "id no encontrado");
+
         } else {
             this.repositorio.deleteById(id);
             return true;
         }
     }
-    
-    //Metodo para buscar por departamento y rol
-    //Metodo para buscar por correo
-    //Metodo para buscar por rol
-    //Metodo para verificar Correo
+
+    // metodo para buscar por departamento y rol
+    // metodo para buscar por correo
+    // metodo para buscar por rol
+    // metodo para verificar correo
 }

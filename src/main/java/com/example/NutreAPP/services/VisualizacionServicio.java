@@ -14,42 +14,35 @@ import com.example.NutreAPP.repositories.IVisualizacionRepositorio;
 
 @Service
 public class VisualizacionServicio {
-
     @Autowired
     private IVisualizacionRepositorio repositorio;
 
-    //Metodo para guardar
-    public Visualizacion guardar(Visualizacion datos) {
+    public Visualizacion guardarVisualizacion(Visualizacion datos) {
         return this.repositorio.save(datos);
     }
 
-    //Metodo para buscar por id
     public Visualizacion buscarPorId(UUID id) {
-        Optional<Visualizacion> visualizacionBuscado = this.repositorio.findById(id);
-        if (!visualizacionBuscado.isPresent()) {
+        Optional<Visualizacion> visualizacionBuscada = this.repositorio.findById(id);
+
+        if (!visualizacionBuscada.isPresent()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "id no encontrado");
         } else {
-            return visualizacionBuscado.get();
+            return visualizacionBuscada.get();
         }
     }
 
-    //Metodo para buscar todos
     public List<Visualizacion> buscarTodos() {
         return this.repositorio.findAll();
     }
 
-    //Metodo para eliminar
-    public boolean eliminar(UUID id) {
-        Optional<Visualizacion> visualizacionBuscado = this.repositorio.findById(id);
-        if (!visualizacionBuscado.isPresent()) {
+    public boolean eliminarVisualizacion(UUID id) {
+        Optional<Visualizacion> visualizacionBuscada = this.repositorio.findById(id);
+
+        if (!visualizacionBuscada.isPresent()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "id no encontrado");
         } else {
             this.repositorio.deleteById(id);
             return true;
         }
     }
-    
-    //Metodo para buscar por fecha de visualizacion
-    //Metodo para buscar por completado true
-    //Metodo para buscar por completado false
 }
